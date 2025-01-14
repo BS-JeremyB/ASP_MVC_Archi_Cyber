@@ -1,11 +1,15 @@
 ﻿using ASP_MVC_Archi_Cyber.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace ASP_MVC_Archi_Cyber.Controllers
 {
     public class ProductController : Controller
     {
-        List<Fruit> fruits = new List<Fruit>
+        public ProductController()
+        {
+            fruits = new List<Fruit>
             {
                 new Fruit { Id = 1, Name = "Pomme", Price = 1.50m, Origin = "France", IsBio = true },
                 new Fruit { Id = 2, Name = "Banane", Price = 0.80m, Origin = "Équateur", IsBio = false },
@@ -17,8 +21,12 @@ namespace ASP_MVC_Archi_Cyber.Controllers
                 new Fruit { Id = 8, Name = "Ananas", Price = 3.50m, Origin = "Costa Rica", IsBio = false },
                 new Fruit { Id = 9, Name = "Cerise", Price = 4.00m, Origin = "France", IsBio = true },
                 new Fruit { Id = 10, Name = "Poire", Price = 1.80m, Origin = "Belgique", IsBio = false }
-
             };
+        }
+
+
+        public List<Fruit> fruits {  get; set; }
+        
             
 
     public IActionResult Index()
@@ -53,6 +61,29 @@ namespace ASP_MVC_Archi_Cyber.Controllers
             return RedirectToAction("Index"); 
         }
 
+
+        
+        public IActionResult CreateFruit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateFruit(Fruit fruit)
+        {
+            TempData["Id"] = fruit.Id;
+            TempData["Name"] = fruit.Name;
+            TempData["Origin"] = fruit.Origin;
+            TempData["IsBio"] = fruit.IsBio;
+
+    
+            return RedirectToAction("Confirmation");
+        }
+
+        public IActionResult Confirmation()
+        {
+            return View();
+        }
 
     }
 }

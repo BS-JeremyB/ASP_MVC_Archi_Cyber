@@ -7,10 +7,19 @@
     ViewData["Title"] = "Détail " + Model.Name;
     decimal discount = (decimal)ViewData["Argent"];
     decimal reduction = ViewBag.Reduction;
+
+    void direBonjour()
+    {
+        <p>Bonjour</p>
+        
+    }
 }
 
 
 <h1>@Model.Name</h1>
+@{
+    direBonjour();
+}
 
 <ul>
     <li>Prix : @Model.Price - @(Model.IsBio ? $"Prix discount à ({ViewBag.Reduction} %) : {Model.Price - (Model.Price * (discount) / 100)}" : "Non")</li>
