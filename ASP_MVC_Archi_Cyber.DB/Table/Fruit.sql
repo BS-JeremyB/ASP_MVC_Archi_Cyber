@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Fruit]
+(
+	[Id] INT NOT NULL IDENTITY, 
+    [Name] NVARCHAR(100) NOT NULL, 
+    [Price] MONEY NOT NULL,
+    [Origin] NVARCHAR(100) NULL,
+    [IsBio] Bit NOT NULL,
+    CONSTRAINT PK_Id PRIMARY KEY (Id),
+    CONSTRAINT CK_PRICE CHECK (Price > 0),
+    CONSTRAINT UK_NAME_ORIGIN UNIQUE (Name, Origin) 
+)
