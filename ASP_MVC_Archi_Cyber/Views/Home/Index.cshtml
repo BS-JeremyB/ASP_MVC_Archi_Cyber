@@ -1,8 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <hr />
+    <h1>ADO</h1>
+    <h2>Etat de la connexion : @ViewBag.Connection</h2>
+    <h2>Date : @ViewData["Date"]</h2>
 </div>
